@@ -37,7 +37,7 @@ export const fetchNotes = createAsyncThunk<
             await db.notes.bulkPut(notes);
         }
         return { notes, totalPages, currentPage };
-    } catch (error: any) {
+    } catch {
         const localNotes = await db.notes.orderBy('createdAt').reverse().toArray();
         return rejectWithValue({ notes: localNotes, message: 'Network failed, loaded from cache.' });
     }
@@ -46,7 +46,14 @@ export const fetchNotes = createAsyncThunk<
 export const addNewNote = createAsyncThunk(
     'notes/addNewNote',
     async (initialNote: { title: string; content: string }, { getState }) => {
-        const state: any = getState();
+        interface RootState {
+            auth: {
+                user: {
+                    _id: string;
+                };
+            };
+        }
+        const state = getState() as RootState;
         const userId = state.auth.user._id;
 
         const tempNote: Note = {

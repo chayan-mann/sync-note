@@ -8,7 +8,7 @@ declare global {
   interface Window {
     electron: {
       ipcRenderer: {
-        send: (channel: string, data?: any) => void;
+        send: (channel: string, _data?: unknown) => void;
       };
     };
   }

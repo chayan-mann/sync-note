@@ -1,14 +1,14 @@
 import type React from "react"
 import { useState, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { useNavigate, Link } from "react-router-dom"
-import type { AppDispatch, RootState } from "../app/store.ts"
+import type { RootState } from "../app/store.ts"
 import axios from "axios"
 
-const API_BASE_URL = (import.meta as ImportMeta).env?.VITE_API_BASE_URL || "http://localhost:8000/api/auth"
+const API_BASE_URL = `${(import.meta as ImportMeta).env.VITE_BACKEND_URL.replace(/\/$/, '')}/api/auth`;
 
 const SignupPage: React.FC = () => {
-  const dispatch: AppDispatch = useDispatch()
+  // const dispatch: AppDispatch = useDispatch()
   const navigate = useNavigate()
   const { isAuthenticated } = useSelector((state: RootState) => state.auth)
 
@@ -28,11 +28,16 @@ const SignupPage: React.FC = () => {
     setErrorMsg(null)
     setLoading(true)
     try {
-      // Corrected the endpoint to be appended to the base URL
       await axios.post(`${API_BASE_URL}/signup`, { username, password })
       navigate("/login")
-    } catch (err: any) {
-      const msg = err?.response?.data?.message || err?.message || "Signup failed. Please try again."
+    } catch (err: unknown) {
+      let msg = "Signup failed. Please try again."
+      if (err && typeof err === "object" && "response" in err && err.response && typeof err.response === "object" && "data" in err.response && err.response.data && typeof err.response.data === "object" && "message" in err.response.data) {
+        // @ts-expect-error: dynamic error shape from axios
+        msg = err.response.data.message
+      } else if (err instanceof Error) {
+        msg = err.message
+      }
       setErrorMsg(msg)
     } finally {
       setLoading(false)

@@ -121,7 +121,6 @@ const DashboardPage: React.FC = () => {
         );
     };
 
-    // The rest of your beautiful JSX remains the same
     return (
         <div className="min-h-screen bg-white dark:bg-slate-950 text-black dark:text-white">
             <header className="md:hidden sticky top-0 z-10 border-b border-slate-800 bg-slate-900/70 backdrop-blur-md px-4 py-3">
