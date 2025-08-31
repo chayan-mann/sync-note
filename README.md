@@ -2,6 +2,9 @@
 
 SyncNote is a modern, offline-first note-taking desktop application built with Electron, React, and TypeScript. It features seamless synchronization, offline capabilities, and a clean, responsive interface.
 
+## Run backend server locally
+using localhost
+
 ## 📥 Download & Install
 
 ### Windows Users
