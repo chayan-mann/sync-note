@@ -2,6 +2,28 @@
 
 SyncNote is a modern, offline-first note-taking desktop application built with Electron, React, and TypeScript. It features seamless synchronization, offline capabilities, and a clean, responsive interface.
 
+## 📥 Download & Install
+
+### Windows Users
+1. Go to the [Releases](https://github.com/chayan-mann/sync-note/releases) page
+2. Download the latest version:
+   - For installer: `SyncNote-Setup-x.x.x.exe` 
+   - For portable version: `SyncNote-x.x.x.exe`
+3. Installation options:
+   - **Using installer**:
+     - Double-click `SyncNote-Setup-x.x.x.exe`
+     - Follow the installation wizard
+     - Launch SyncNote from Start menu
+   - **Portable version**:
+     - No installation required
+     - Double-click `SyncNote-x.x.x.exe` to run
+     - Store in any location of your choice
+
+### System Requirements
+- Windows 10 or later (64-bit)
+- 4GB RAM minimum
+- 500MB free disk space
+- Internet connection for syncing (optional)
 ## 🌟 Features
 
 ### Core Features
